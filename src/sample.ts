@@ -1,0 +1,56 @@
+import type { Dataset, Span } from "./model";
+const span = (
+  id: string,
+  parentId: string | undefined,
+  name: string,
+  service: string,
+  start: number,
+  duration: number,
+  error = false,
+): Span => ({
+  id,
+  parentId,
+  traceId: "checkout-demo-7f29",
+  name,
+  service,
+  start,
+  duration,
+  error,
+  attributes: {
+    "deployment.environment.name": "synthetic-demo",
+    "http.request.method": "POST",
+  },
+});
+export const sample: Dataset = {
+  warnings: [],
+  spans: [
+    span("root", undefined, "POST /checkout", "gateway", 0, 842),
+    span("auth", "root", "verify session", "identity", 8, 36),
+    span("cart", "root", "load cart", "checkout", 51, 98),
+    span("redis", "cart", "GET cart:42", "redis", 55, 12),
+    span("inventory", "cart", "reserve stock", "inventory", 70, 68),
+    span("stock-db", "inventory", "UPDATE inventory", "postgres", 82, 43),
+    span("payment", "root", "authorize payment", "payments", 168, 620),
+    span("risk", "payment", "risk assessment", "risk-engine", 175, 110),
+    span("risk-db", "risk", "SELECT recent orders", "postgres", 180, 76),
+    span(
+      "provider-1",
+      "payment",
+      "provider /authorize · attempt 1",
+      "payment-provider",
+      295,
+      210,
+      true,
+    ),
+    span(
+      "provider-2",
+      "payment",
+      "provider /authorize · attempt 2",
+      "payment-provider",
+      555,
+      201,
+    ),
+    span("receipt", "root", "publish receipt", "notifications", 795, 32),
+    span("outbox", "receipt", "INSERT outbox", "postgres", 800, 16),
+  ],
+};
