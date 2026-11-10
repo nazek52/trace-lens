@@ -1,14 +1,22 @@
-# Trace Lens
+<a id="trace-lens"></a>
+
+<p>
+  <img src="docs/assets/project-header.svg" alt="Trace Lens — Understand latency. Keep traces local." width="100%">
+</p>
 
 [![Checks](https://github.com/nazek52/trace-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/nazek52/trace-lens/actions/workflows/ci.yml)
 
-An offline-first trace explorer for investigating latency without sending trace data to a server. Import OTLP JSON, inspect a nested waterfall, find error spans, and export a normalized trace.
+A browser-based trace explorer for investigating latency without uploading trace data. Import OTLP JSON, inspect a nested waterfall, find error spans, and export a normalized trace.
 
-**TypeScript · React · Web Workers · timing algorithms · Playwright**
+No account, API key, database, or backend is required.
+
+**TypeScript · React · Web Workers · Playwright**
+
+[Run locally](#run) · [Architecture](docs/architecture.md) · [Verification](docs/verification.md) · [Русский разбор](docs/INTERVIEW.ru.md)
 
 ![Trace Lens interface](docs/preview.png)
 
-[Русский разбор](docs/INTERVIEW.ru.md) · [Architecture](docs/architecture.md) · [Verification](docs/verification.md)
+---
 
 ## Run
 
